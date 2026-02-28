@@ -18,7 +18,7 @@ namespace Snake
         public Direction Opposite() {
             return new Direction(-RowOffset, -ColumnOffset);
         }
-
+         
         public override bool Equals(object obj)
         {
             return obj is Direction direction &&
@@ -29,6 +29,16 @@ namespace Snake
         public override int GetHashCode()
         {
             return HashCode.Combine(RowOffset, ColumnOffset);
+        }
+
+        public static bool operator ==(Direction left, Direction right)
+        {
+            return EqualityComparer<Direction>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Direction left, Direction right)
+        {
+            return !(left == right);
         }
     }
 }
