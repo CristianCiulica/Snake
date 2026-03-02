@@ -5,30 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Snake"
         mc:Ignorable="d"
-        Title="Snake" Height="500" Width="800"
+        Title="Snake"
+        Height="500"
+        Width="800"
         Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource TextColor}"
         FontFamily="{StaticResource MainFont}"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/icon.ico">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock x:Name="ScoreText" HorizontalAlignment="Center" VerticalAlignment="Center" Text="SCORE 0" FontSize="22" Margin="10"></TextBlock>
-        <Border x:Name="GridBorder"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Grid.Row="1"
-                BorderBrush="{StaticResource GridLineColor}"
-                BorderThickness="2">
-            <UniformGrid x:Name="GameGrid"
-                         Width="400" Height="400"
-                         Background="{StaticResource GridBackgroundColor}">
-                
-                
-            </UniformGrid>
-        </Border>
-    </Grid>
+        Icon="/Assets/icon.ico"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        KeyDown="Window_KeyDown"
+        MinHeight="300"
+        MinWidth="300">
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border Width="400"
+                    HorizontalAlignment="Center"
+                    Margin="10">
+                <TextBlock x:Name="ScoreText"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="SCORE  0"
+                           FontSize="22" />
+            </Border>
+
+            <Border x:Name="GridBorder"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    BorderBrush="{StaticResource GridLineColor}"
+                    BorderThickness="2"
+                    Margin="20 0 20 20"
+                    RenderOptions.EdgeMode="Aliased">
+                <Grid>
+                    <UniformGrid x:Name="GameGrid"
+                                 Width="400"
+                                 Height="400"
+                                 Background="{StaticResource GridBackgroundColor}"
+                                 SnapsToDevicePixels="True"
+                                 RenderOptions.BitmapScalingMode="HighQuality" />
+                    <TextBlock x:Name="OverlayText"
+                               Text="Press Any Key To Start"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Width="400"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Padding="20"
+                               Background="#CC000000">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="Black" 
+                                              Direction="0" 
+                                              ShadowDepth="0" 
+                                              BlurRadius="10" 
+                                              Opacity="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+    </Viewbox>
 </Window>
